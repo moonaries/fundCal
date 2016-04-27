@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-4.0.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx-4.0.xsd 
+	http://www.springframework.org/schema/mvc
+	http://www.springframework.org/schema/mvc/spring-mvc.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop-3.0.xsd	
+	http://www.springframework.org/schema/task
+	http://www.springframework.org/schema/task/spring-task-3.1.xsd	
+	http://code.alibabatech.com/schema/dubbo  
+    http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    
+    <!--激活Spring注解方式：自动扫描，并注入bean  spring可以自动去扫描base-pack下面或者子包下面的java文件，
+                            如果扫描到有@Component @Controller@Service等这些注解的类，则把这些类注册为bean-->
+    <context:component-scan base-package="com.lji.local.spring.service,com.lji.local.spring.dubbo.service,com.lji.local.spring.strategy">
+    	<context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
+    </context:component-scan>
+	
+	<!-- 读取配置文件,下面就可以使用  classpath:51ism.jdbc.properties-->
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    	<property name="locations">
+    		<list>
+    			 <value>classpath:dubbo.properties</value>
+    		 </list>
+    	</property>
+    </bean>
+    
+    <bean id="ismDataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="${jdbc.driver}" />
+		<property name="url" value="${ism.url}" />
+		<property name="username" value="${ism.username}" />
+		<property name="password" value="${ism.password}" />
+		<property name="maxActive" value="500" />
+		<property name="initialSize" value="50" />
+		<property name="timeBetweenEvictionRunsMillis" value="3600000" />
+		<property name="testWhileIdle" value="true" />
+		<property name="validationQuery" value="select 1 from dual" />
+	</bean>   
+	
+	<bean id="dceDataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="${jdbc.driver}" />
+		<property name="url" value="${dce.url}" />
+		<property name="username" value="${dce.username}" />
+		<property name="password" value="${dce.password}" />
+		<property name="maxActive" value="500" />
+		<property name="initialSize" value="50" />
+		<property name="timeBetweenEvictionRunsMillis" value="3600000" />
+		<property name="testWhileIdle" value="true" />
+		<property name="validationQuery" value="select 1 from dual" />
+	</bean>  
+	
+	<bean id="cebDataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="${jdbc.driver}" />
+		<property name="url" value="${ceb.url}" />
+		<property name="username" value="${ceb.username}" />
+		<property name="password" value="${ceb.password}" />
+		<property name="maxActive" value="500" />
+		<property name="initialSize" value="50" />
+		<property name="timeBetweenEvictionRunsMillis" value="3600000" />
+		<property name="testWhileIdle" value="true" />
+		<property name="validationQuery" value="select 1 from dual" />
+	</bean>  
+	
+	<bean id="jydbDataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="${jdbc.driver}" />
+		<property name="url" value="${jydb.url}" />
+		<property name="username" value="${jydb.username}" />
+		<property name="password" value="${jydb.password}" />
+		<property name="maxActive" value="500" />
+		<property name="initialSize" value="50" />
+		<property name="timeBetweenEvictionRunsMillis" value="3600000" />
+		<property name="testWhileIdle" value="true" />
+		<property name="validationQuery" value="select 1 from dual" />
+	</bean>  
+	
+	<!-- 配置多数据源映射关系 -->
+    <bean id="dataSource" class="com.lji.local.spring.common.DynamicDataSource">
+        <property name="targetDataSources">
+            <map key-type="java.lang.String">
+                <entry key="dceDataSource" value-ref="dceDataSource"></entry>
+        		<entry key="ismDataSource" value-ref="ismDataSource"></entry>
+                <entry key="cebDataSource" value-ref="cebDataSource"></entry>
+                <entry key="jydbDataSource" value-ref="jydbDataSource"></entry>
+            </map>
+        </property>
+    	<!-- 默认目标数据源为你主库数据源 -->
+        <property name="defaultTargetDataSource" ref="dceDataSource"/>
+    </bean>  
+
+    
+    <!--mybatis配置-->
+    <!-- 创建SqlSessionFactory，同时指定数据源 datasource必须与上面transactionManager的datasource相同-->  
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">  
+        <property name="dataSource" ref="dataSource" />
+        <property name="mapperLocations">
+			<list>
+				<value>classpath*:**/*Mapper.xml</value>
+			</list>
+		</property>  
+    </bean>
+    <!-- Mapper接口所在包名，Spring会自动查找其下的Mapper -->  
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">  
+        <property name="basePackage" value="com.lji.local.spring.**.dao" />  
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />  
+    </bean>
+    
+    <bean id="threadPool" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">  
+	    <!-- 核心线程数  -->  
+	    <property name="corePoolSize" value="5" />  
+	    <!-- 最大线程数 -->  
+	    <property name="maxPoolSize" value="100" />  
+	    <!-- 队列最大长度 >=mainExecutor.maxSize -->  
+	    <property name="queueCapacity" value="1000" />  
+	    <!-- 线程池维护线程所允许的空闲时间 -->  
+	    <property name="keepAliveSeconds" value="30000" />  
+	    <!-- 线程池对拒绝任务(无线程可用)的处理策略 -->  
+	    <property name="rejectedExecutionHandler">  
+	      <bean class="java.util.concurrent.ThreadPoolExecutor$CallerRunsPolicy" />  
+	    </property>  
+  	</bean>  
+  
+  	
+	<bean id="mainExecutor" class="com.lji.local.spring.call.MainExecutor">  
+	    <property name="threadPool" ref="threadPool" />   
+	</bean>   
+   <!-- 自动执行的部分就不需要了
+	<bean id="springScheduleExecutorTask" class="org.springframework.scheduling.concurrent.ScheduledExecutorTask">  
+	    <property name="runnable" ref="mainExecutor" /> -->  
+	    <!-- 容器加载10秒后开始执行 -->  
+	    <!-- <property name="delay" value="10000" />  -->  
+	    <!-- 每次任务间隔 5秒-->  
+	    <!-- <property name="period" value="5000" /> 
+	</bean> 
+	    
+	<bean id="springScheduledExecutorFactoryBean" class="org.springframework.scheduling.concurrent.ScheduledExecutorFactoryBean">  
+	    <property name="scheduledExecutorTasks">  
+	      <list>  
+	        <ref bean="springScheduleExecutorTask" />  
+	      </list>  
+	    </property>  
+	</bean>  
+    -->
+    <!-- aop切面动态切换数据源-->
+    <bean class="com.lji.local.spring.common.DataSourceExchange"></bean>
+    
+    
+    <!-- (事务管理)transaction manager, use JtaTransactionManager for global tx -->  
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">  
+        <property name="dataSource" ref="dataSource" />  
+    </bean>
+     <!--用@Transactional annotation来配置spring的事务规则， 注解的出现不足以开启事务行为，<tx:annotation-driven/>是 对@Transactional这个注解进行的驱动，开启事物 -->
+    <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
+    <!-- 切面 -->
+    <aop:aspectj-autoproxy/>
+    
+    <!-- 应用名 -->
+    <!-- 自动发现dubbo接口 -->
+	<!-- 注册中心 -->
+    <!-- 协议，布多套时需要修改dubbo.protocol.port，与之前的不能重复
+    <dubbo:annotation package="com.lji.local.spring.dubbo.service"/>
+    <dubbo:application name="lji-dubbo-provider" />
+    <dubbo:registry address="zookeeper://192.168.100.132:2181" /> 
+    <dubbo:protocol name="dubbo" port="20501" />
+    <dubbo:provider timeout="5000" /> -->
+</beans>

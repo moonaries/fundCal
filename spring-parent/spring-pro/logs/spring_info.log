@@ -1,0 +1,24 @@
+2016-03-25 09:04:11,396 INFO  [com.lji.local.spring.main.TestMain] Fri Mar 25 09:04:11 GMT+08:00 2016	计算开始
+  2016-03-25 09:04:11,758 INFO  [org.springframework.context.support.ClassPathXmlApplicationContext] Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@39b0595c: startup date [Fri Mar 25 09:04:11 GMT+08:00 2016]; root of context hierarchy
+  2016-03-25 09:04:31,610 INFO  [com.lji.local.spring.main.TestMain] Fri Mar 25 09:04:31 GMT+08:00 2016	计算开始
+  2016-03-25 09:04:32,116 INFO  [org.springframework.context.support.ClassPathXmlApplicationContext] Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@39b0595c: startup date [Fri Mar 25 09:04:32 GMT+08:00 2016]; root of context hierarchy
+  2016-03-25 09:04:32,346 INFO  [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] Loading XML bean definitions from class path resource [spring-context.xml]
+  2016-03-25 09:04:51,260 INFO  [com.lji.local.spring.main.TestMain] Fri Mar 25 09:04:51 GMT+08:00 2016	计算开始
+  2016-03-25 09:04:51,711 INFO  [org.springframework.context.support.ClassPathXmlApplicationContext] Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@32b6481e: startup date [Fri Mar 25 09:04:51 GMT+08:00 2016]; root of context hierarchy
+  2016-03-25 09:04:51,906 INFO  [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] Loading XML bean definitions from class path resource [spring-context.xml]
+  2016-03-25 09:05:27,710 INFO  [com.lji.local.spring.main.TestMain] Fri Mar 25 09:05:27 GMT+08:00 2016	计算开始
+  2016-03-25 09:05:28,191 INFO  [org.springframework.context.support.ClassPathXmlApplicationContext] Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@5d38c394: startup date [Fri Mar 25 09:05:28 GMT+08:00 2016]; root of context hierarchy
+  2016-03-25 09:05:28,287 INFO  [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] Loading XML bean definitions from class path resource [spring-context.xml]
+  2016-03-25 09:05:30,098 INFO  [org.springframework.beans.factory.config.PropertyPlaceholderConfigurer] Loading properties file from class path resource [dubbo.properties]
+  2016-03-25 09:05:41,636 INFO  [com.lji.local.spring.main.TestMain] Fri Mar 25 09:05:41 GMT+08:00 2016	计算开始
+  2016-03-25 09:05:42,149 INFO  [org.springframework.context.support.ClassPathXmlApplicationContext] Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@5d38c394: startup date [Fri Mar 25 09:05:42 GMT+08:00 2016]; root of context hierarchy
+  2016-03-25 09:05:42,391 INFO  [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] Loading XML bean definitions from class path resource [spring-context.xml]
+  2016-03-25 09:05:44,615 INFO  [org.springframework.beans.factory.config.PropertyPlaceholderConfigurer] Loading properties file from class path resource [dubbo.properties]
+  2016-03-25 09:05:50,496 INFO  [org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor] Initializing ExecutorService  'threadPool'
+  2016-03-25 09:05:55,775 ERROR [com.lji.local.spring.call.MainExecutor] Fri Mar 25 09:05:55 GMT+08:00 2016id为	======4077751	的基金找不到对应的dce基金
+  2016-03-25 09:05:55,800 INFO  [com.lji.local.spring.main.TestMain] Fri Mar 25 09:05:55 GMT+08:00 2016	计算结束
+  2016-03-25 09:06:51,354 INFO  [com.lji.local.spring.main.TestMain] Fri Mar 25 09:06:51 GMT+08:00 2016	计算开始
+  2016-03-25 09:06:51,940 INFO  [org.springframework.context.support.ClassPathXmlApplicationContext] Refreshing org.springframework.context.support.ClassPathXmlApplicationContext@5d38c394: startup date [Fri Mar 25 09:06:51 GMT+08:00 2016]; root of context hierarchy
+  2016-03-25 09:06:52,141 INFO  [org.springframework.beans.factory.xml.XmlBeanDefinitionReader] Loading XML bean definitions from class path resource [spring-context.xml]
+  2016-03-25 09:06:54,298 INFO  [org.springframework.beans.factory.config.PropertyPlaceholderConfigurer] Loading properties file from class path resource [dubbo.properties]
+  

@@ -1,0 +1,324 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>data.check</groupId>
+    <artifactId>spring-parent</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <relativePath>../pom.xml</relativePath>
+  </parent>
+  <artifactId>spring-pro</artifactId>
+  <packaging>jar</packaging>
+  <name>spring</name>
+  
+  <dependencies>
+  
+  	<dependency>
+  		<groupId>data.check</groupId>
+  		<artifactId>spring-dao</artifactId>
+    	<version>1.0.0-SNAPSHOT</version>
+  	</dependency>
+  	
+  	<dependency>
+  		<groupId>data.check</groupId>
+  		<artifactId>spring-api</artifactId>
+    	<version>1.0.0-SNAPSHOT</version>
+  	</dependency>
+  	
+  	<dependency>
+  		<groupId>data.check</groupId>
+  		<artifactId>spring-utils</artifactId>
+    	<version>1.0.0-SNAPSHOT</version>
+  	</dependency>
+  	
+  	
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <!-- SPRING 相关jar包 begin -->
+    <dependency>
+	 <groupId>org.springframework</groupId>
+	 <artifactId>spring-context</artifactId>
+	</dependency>  
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-jdbc</artifactId>
+   </dependency>
+   <dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-context-support</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-test</artifactId>
+		<scope>test</scope>
+	</dependency>
+	<!-- spring aop 相关 start -->
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-aop</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>org.aspectj</groupId>
+		<artifactId>aspectjrt</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>org.aspectj</groupId>
+		<artifactId>aspectjweaver</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>cglib</groupId>
+		<artifactId>cglib</artifactId>
+	</dependency>
+	<!-- spring aop 相关 end -->
+	 <!-- SPRING 相关jar包 end -->
+	 
+	 <!-- LOG4J 相关jar包 begin -->
+	<dependency>
+		<groupId>org.slf4j</groupId>
+		<artifactId>slf4j-api</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>org.slf4j</groupId>
+		<artifactId>jcl-over-slf4j</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>org.slf4j</groupId>
+		<artifactId>slf4j-log4j12</artifactId>
+	</dependency>
+	 <!-- LOG4J 相关jar包 end -->
+	 
+	 <dependency>
+		<groupId>commons-logging</groupId>
+		<artifactId>commons-logging</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>commons-fileupload</groupId>
+		<artifactId>commons-fileupload</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>commons-io</groupId>
+		<artifactId>commons-io</artifactId>
+	</dependency>
+	<dependency>
+		<groupId>commons-dbcp</groupId>
+		<artifactId>commons-dbcp</artifactId>
+	</dependency>
+	<!-- Jackson -->
+	<dependency>
+		<groupId>org.codehaus.jackson</groupId>
+		<artifactId>jackson-core-asl</artifactId>
+		</dependency>
+	<dependency>
+		<groupId>org.codehaus.jackson</groupId>
+		<artifactId>jackson-mapper-asl</artifactId>
+		</dependency>
+	
+	<!-- fastjson json -->
+	<dependency>
+		<groupId>com.alibaba</groupId>
+		<artifactId>fastjson</artifactId>
+	</dependency> 
+	<dependency>
+        <groupId>net.sf.json-lib</groupId>
+        <artifactId>json-lib</artifactId>
+        <classifier>jdk15</classifier>
+    </dependency>
+    
+    <!-- alibaba dubbo -->
+	<dependency>
+		<groupId>com.alibaba</groupId>
+		<artifactId>dubbo</artifactId>
+		<exclusions>
+			<exclusion>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring</artifactId>
+			</exclusion>
+		</exclusions>
+	</dependency>
+	<!-- zookeeper -->
+	<dependency>
+	    <groupId>com.github.sgroschupf</groupId>
+	    <artifactId>zkclient</artifactId>
+	</dependency>
+	<dependency>
+        <groupId>com.netflix.curator</groupId>
+        <artifactId>curator-framework</artifactId>
+    </dependency>
+    <dependency>
+	    <groupId>org.fusesource.leveldbjni</groupId>
+	    <artifactId>leveldbjni-all</artifactId>
+	</dependency>
+	<dependency>
+        <groupId>org.apache.zookeeper</groupId>
+        <artifactId>zookeeper</artifactId>
+        <exclusions>
+            <exclusion>
+                <groupId>org.jboss.netty</groupId>
+                <artifactId>netty</artifactId>
+            </exclusion>
+            <exclusion>
+                <groupId>log4j</groupId>
+                <artifactId>log4j</artifactId>
+            </exclusion>
+        </exclusions>
+    </dependency>
+    <dependency>
+        <groupId>io.netty</groupId>
+        <artifactId>netty-all</artifactId>
+    </dependency>
+	
+  </dependencies>
+  
+  <build>  
+  
+  	<resources>
+  		<resource>
+		<!-- 复制src/main/resources下的配置文件 --> 				
+		<directory>src/main/resources</directory> 				
+			<includes> 					
+				<include>**/*.properties</include> 					
+				<include>**/*.xml</include> 				
+			</includes> 				
+			
+			<filtering>false</filtering> 			
+		</resource> 
+  	</resources>
+  	
+	<plugins>
+		<plugin>
+			<groupId>org.mybatis.generator</groupId>
+			<artifactId>mybatis-generator-maven-plugin</artifactId>
+			<version>${mybatis.generator.version}</version>
+			<configuration>
+				<verbose>true</verbose>
+				<overwrite>true</overwrite>
+			</configuration>
+		</plugin>
+		
+		 
+           <plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-dependency-plugin</artifactId>
+			<version>2.10</version>
+			<executions>
+				<execution>
+					<id>unpack</id>
+					<phase>package</phase>
+					<goals>
+						<goal>unpack</goal>
+					</goals>
+					<configuration>
+						<artifactItems>
+							<artifactItem>
+								<groupId>com.alibaba</groupId>
+								<artifactId>dubbo</artifactId>
+								<version>2.5.3</version>
+								<outputDirectory>${project.build.directory}/spring</outputDirectory>
+								<includes>${basedir}/src/main/resources/**</includes>
+							</artifactItem>
+						</artifactItems>
+					</configuration>
+				</execution>
+			</executions>
+		</plugin>
+		
+		<!-- 打包
+		<plugin>
+			<artifactId>maven-assembly-plugin</artifactId>
+               <configuration>
+                   <descriptor>${basedir}/src/main/resources/assembly.xml</descriptor>
+               </configuration>
+               <executions>
+				<execution>
+					<id>make-assembly</id>
+					<phase>package</phase>
+					<goals>
+						<goal>single</goal>
+					</goals>
+				</execution>
+			</executions>
+           </plugin> -->
+           
+           <!-- 跳过上传私服 -->
+		<plugin>
+	    	<groupId>org.apache.maven.plugins</groupId>
+	    	<artifactId>maven-deploy-plugin</artifactId>
+	   		<configuration>
+	        	<skip>true</skip>
+	  		</configuration>
+	 	</plugin>
+           
+           <plugin>  
+		  <groupId>org.apache.maven.plugins</groupId>  
+		  <artifactId>maven-shade-plugin</artifactId>  
+		  <version>1.7</version>
+		  <executions>  
+		    <execution>  
+		      <phase>package</phase>  
+		      <goals>  
+		        <goal>shade</goal>  
+		      </goals>  
+		      <configuration>  
+		        <finalName>spring</finalName>  
+		        <shadedArtifactAttached>true</shadedArtifactAttached>  
+		        <shadedClassifierName>jar-with-dependencies</shadedClassifierName>  
+		        <transformers>  
+		          <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">  
+		            <mainClass>com.lji.local.spring.main.TestMain</mainClass>  
+		          </transformer>  
+		          <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">  
+		            <resource>META-INF/spring.handlers</resource>  
+		          </transformer>  
+		          <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">  
+		            <resource>META-INF/spring.schemas</resource>  
+		          </transformer>  
+		          <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">  
+		            <resource>META-INF/spring.tooling</resource>  
+		          </transformer>  
+		        </transformers>	   
+		      </configuration>  
+		    </execution>  
+		  </executions>  
+		</plugin> 
+  	</plugins>
+  	
+  	<pluginManagement>
+    		<plugins>
+    			<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+    			<plugin>
+    				<groupId>org.eclipse.m2e</groupId>
+    				<artifactId>lifecycle-mapping</artifactId>
+    				<version>1.0.0</version>
+    				<configuration>
+    					<lifecycleMappingMetadata>
+    						<pluginExecutions>
+    							<pluginExecution>
+    								<pluginExecutionFilter>
+    									<groupId>
+    										org.apache.maven.plugins
+    									</groupId>
+    									<artifactId>
+    										maven-dependency-plugin
+    									</artifactId>
+    									<versionRange>
+    										[2.10,)
+    									</versionRange>
+    									<goals>
+    										<goal>unpack</goal>
+    									</goals>
+    								</pluginExecutionFilter>
+    								<action>
+    									<ignore></ignore>
+    								</action>
+    							</pluginExecution>
+    						</pluginExecutions>
+    					</lifecycleMappingMetadata>
+    				</configuration>
+    			</plugin>
+    		</plugins>
+    	</pluginManagement>
+  </build>
+</project>

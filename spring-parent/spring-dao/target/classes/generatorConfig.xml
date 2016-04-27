@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+	  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+	  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	
+	<classPathEntry
+	location="E:\mvnjars\mysql\mysql-connector-java\5.1.27\mysql-connector-java-5.1.27.jar" />
+	
+	<context id="DB2Tables" targetRuntime="MyBatis3">
+		<plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin">
+			<property name="searchString" value="Example$" />
+			<property name="replaceString" value="Criteria" />
+		</plugin>
+ 
+ 		<plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" />
+       	<plugin type="org.mybatis.generator.plugins.CaseInsensitiveLikePlugin" />
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
+        <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"/>
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+        </commentGenerator>
+
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://192.168.100.132:3306/dce?generateSimpleParameterMetadata=true"
+			userId="lji" password="lsm">
+		</jdbcConnection>
+
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<!-- generate Model -->
+		<javaModelGenerator targetPackage="com.lji.local.spring.dce.model"
+			targetProject="src\main\java">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+
+		<sqlMapGenerator targetPackage="dce.mapping"
+			targetProject="src\main\resources">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+
+
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="com.lji.local.spring.dce.dao" targetProject="src\main\java">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+
+
+		<table schema="" tableName="ism_fund_temp" domainObjectName="DceFund"></table>
+		<table schema="" tableName="ism_fundnet_temp_log" domainObjectName="DceFundNet"></table>
+		<table schema="" tableName="ism_achievements_temp" domainObjectName="DceAchievements"></table>
+		<table schema="" tableName="ism_fundmonthreturn_temp" domainObjectName="DceFundMonthReturn"></table>
+		<table schema="" tableName="ism_fund_daily_ror" domainObjectName="DceFundDailyRor"></table>
+		<table schema="" tableName="ism_fund_monthly_ror" domainObjectName="DceFundMonthRor">
+			<columnOverride column="month_ror" jdbcType="TINYINT" javaType="Integer"/>
+		</table>
+		<table schema="" tableName="ism_fund_week_ror" domainObjectName="DceFundWeekRor"></table>
+		<table schema="" tableName="ism_fund_years_ror" domainObjectName="DceFundYearsRor"></table>
+		<table schema="" tableName="ism_quotation" domainObjectName="DceQuotation"></table>
+
+ 		<!-- 
+ 		<table schema="" tableName="ism_fund_net_log" domainObjectName="IsmFundNet"></table>
+ 		<table schema="" tableName="ism_fund_temp" domainObjectName="IsmFundTemp"></table>
+ 		<table schema="" tableName="ism_fundnet_temp_log" domainObjectName="IsmFundNetTemp"></table>
+ 		<table schema="" tableName="ism_quotation" domainObjectName="IsmQuotation"></table>
+ 		<table schema="" tableName="ism_achievements" domainObjectName="IsmAchievements"></table>
+ 		<table schema="" tableName="ism_achievements_temp" domainObjectName="IsmAchievementsTemp"></table>
+ 		<table schema="" tableName="ism_fundmonthreturn" domainObjectName="IsmFundMonthReturn"></table>
+ 		<table schema="" tableName="ism_fundmonthreturn_temp" domainObjectName="IsmFundMonthReturnTemp"></table>
+ 		<table schema="" tableName="ism_fund" domainObjectName="IsmFund"></table>
+ 		 -->
+	</context>
+</generatorConfiguration>
